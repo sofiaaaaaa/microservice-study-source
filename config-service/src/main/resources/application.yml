@@ -1,0 +1,40 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///docu/study/native-local-repo
+        git:
+#          uri: file:///docu/study/git-local-repo
+          uri: https://github.com/sofiaaaaaa/spring-cloud-config.git
+
+#  http://localhost:8888/user-service/native
+#  http://localhost:8888/ecommerce/native
+
+
+# rabbitMQ 설치
+# https://www.erlang.org/news/157
+# https://rabbitmq.com/download.html
+# manager 설치 command $ rabbitmq-plugins enable rabbitmq_management
+# 127.0.0.1:15672 guest / guest login
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh
+
+
+# git repo yml 파일 내용 변경시 http://127.0.0.1:8888/config-service/default 에서 확인가능
